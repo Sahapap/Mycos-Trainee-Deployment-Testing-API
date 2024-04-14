@@ -23,6 +23,16 @@ namespace WebApplication1.Controllers
             return data;
         }
 
+        [HttpGet("test")]
+        public object TestFood()
+        {
+            return new { 
+                id = 0,
+                name = "Food Test"
+            };
+
+        }
+
         [HttpPost]
         public async Task<string> Post([FromBody]Food food)
         {

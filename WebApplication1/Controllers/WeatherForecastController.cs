@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -12,10 +13,12 @@ namespace WebApplication1.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly FoodContext _foodContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, FoodContext foodContext)
         {
             _logger = logger;
+            _foodContext = foodContext;
         }
 
         [HttpGet]
@@ -28,6 +31,14 @@ namespace WebApplication1.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        //[Route("WeatherForecast/test")]
+        [HttpGet("test")]
+        public List<Food> GetAllFood()
+        {
+            var data = _foodContext.Foods.ToList();
+            return data;
         }
     }
 }
