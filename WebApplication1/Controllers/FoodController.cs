@@ -5,7 +5,7 @@ namespace WebApplication1.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FoodController : Controller
+    public class FoodController : ControllerBase
     {
         private readonly ILogger<FoodController> _logger;
         private readonly FoodContext _foodContext;
